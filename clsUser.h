@@ -318,7 +318,21 @@ public:
         return _LoadUsersDataFromFile();
     }
 
+    bool CheckPermessionAccess(enPermessions Permession) {
 
+        if (Permession == enPermessions::eAll) {
+            return true;
+        }
+
+        if ((Permession & _Permessions) == Permession) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+    }
 
 };
 

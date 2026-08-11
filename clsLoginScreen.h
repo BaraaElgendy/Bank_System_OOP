@@ -5,12 +5,12 @@
 #include"Global.h"
 #include"clsMainMenuScreen.h"
 using namespace std;
-class clsLoginScreen:protected clsScreen
+class clsLoginScreen :protected clsScreen
 {
 
 private:
 	static void _Login() {
-		
+
 
 		bool LoginFailed = false;
 
@@ -36,7 +36,7 @@ private:
 
 		} while (LoginFailed);
 
-		
+
 		clsMainMenuScreen::ShowMainMenu();
 	}
 

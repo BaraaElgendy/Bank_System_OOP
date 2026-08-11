@@ -43,11 +43,13 @@ private:
 		cout << "\n______________________\n";
 	}
 
-
 public:
+
 	static void ShowUpdateClientScreen() {
 
-		system("cls");
+		if (!CheckAccessRights(clsUser::enPermessions::pUpdateClient)) {
+			return;
+		}
 
 		_DrawScreenHeader("\tUpdate Client Screen");
 
@@ -94,10 +96,6 @@ public:
 
 		
 	}
-
-
-
-
 
 };
 

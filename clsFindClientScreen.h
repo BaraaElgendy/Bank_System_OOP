@@ -21,10 +21,14 @@ private:
 		cout << "\nBalance    : " << Client.AccountBalance();
 		cout << "\n______________________\n";
 	}
+
 public:
 
 	static void ShowFindClientScreen() {
-		system("cls");
+		
+		if (!CheckAccessRights(clsUser::enPermessions::pFindClient)) {
+			return;
+		}
 
 		_DrawScreenHeader("\tFind Client Screen");
 
@@ -53,9 +57,4 @@ public:
 		_PrintClientInfo(Client);
 	}
 
-
-
-
-
 };
-

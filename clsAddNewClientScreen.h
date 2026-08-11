@@ -49,7 +49,10 @@ private:
 
 public:
 	static void ShowAddNewClientScreen() {
-		system("cls");
+
+		if (!CheckAccessRights(clsUser::enPermessions::pAddClient)) {
+			return;
+		}
 
 		_DrawScreenHeader("\tAdd New Client Screen");
 		
