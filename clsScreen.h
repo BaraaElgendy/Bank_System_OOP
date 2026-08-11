@@ -12,8 +12,7 @@ protected:
 	static void _ShowDateAndUser() {
 		
 		cout << "\t\t\t\tUser: " << CurrentUser.UserName() <<endl;
-		cout << "\t\t\t\tDate: ";
-		clsDate::GetSystemDate().Print();
+		cout << "\t\t\t\tDate: "<<clsDate::DateToString(clsDate());
 
 	}
 
