@@ -11,6 +11,8 @@ class clsLoginScreen :protected clsScreen
 {
 
 private:
+
+
 	static bool _Login() {
 
 
@@ -28,8 +30,8 @@ private:
 
 				cout << "\nInvalid Username/Password!\n";
 				cout << "You Have " << (3 - LoginCounter) << " Tries Left\n";
-			
-}
+
+			}
 
 			if (LoginCounter == 3) {
 				cout << "\nYou Are Locked Out Of The System After 3 Failed Tries\n";
@@ -47,14 +49,15 @@ private:
 
 			LoginFailed = CurrentUser.IsEmpty();
 
-			
+
 
 		} while (LoginFailed);
 
-		
-			clsMainMenuScreen::ShowMainMenu();
-			return true;
-		
+		CurrentUser.RegisterLogin();
+
+		clsMainMenuScreen::ShowMainMenu();
+		return true;
+
 	}
 	
 

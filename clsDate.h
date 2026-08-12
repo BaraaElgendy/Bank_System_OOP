@@ -1126,7 +1126,20 @@ public:
 		return CompareDates(*this, Date2);
 	}
 
+	static  string GetSystemTime() {
 
+		time_t now = time(0);
+		tm* ltm = localtime(&now);
+
+		char buffer[10];
+		strftime(buffer, sizeof(buffer), "%H:%M:%S", ltm);
+
+		return string(buffer);
+	}
+
+	static string GetSystemDateTime() {
+		return DateToString(GetSystemDate()) + " - " + GetSystemTime();
+	}
 
 };
 

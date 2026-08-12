@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "clsDate.h"
+#include<ctime>
 
 using namespace std;
 
@@ -19,6 +20,8 @@ public:
         //Seeds the random number generator in C++, called only once
         srand((unsigned)time(NULL));
     }
+
+
 
 
    static string NumberToText(int Number)
@@ -72,7 +75,6 @@ public:
             return NumberToText(Number / 1000000000) + "Billions " + NumberToText(Number % 1000000000);
         }
     }
-
 
 
     static  int RandomNumber(int From, int To)

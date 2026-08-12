@@ -144,6 +144,17 @@ private:
 
     }
 
+
+    string _PrepareLogDataLine(string Seperator = "#//#") {
+        string Line="";
+        Line += clsDate::GetSystemDateTime()+Seperator;
+        Line += UserName() + Seperator;
+        Line += Password() + Seperator;
+        Line += to_string(Permessions());
+        return Line;
+
+    }
+
 public:
 
     enum enPermessions { eAll = -1, pListClients = 1, pAddClient = 2, pDeleteClient = 4, pUpdateClient = 8, 
@@ -333,6 +344,29 @@ public:
 
 
     }
+
+
+    void RegisterLogin() {
+        
+        fstream MyFile;
+
+        string DataLine = _PrepareLogDataLine();
+
+        MyFile.open("LoginRegister.txt", ios::out | ios::app); //append Mode
+
+        if (MyFile.is_open()) {
+
+            MyFile << DataLine << endl;
+
+            MyFile.close();
+
+
+        }
+
+    }
+
+  
+
 
 };
 
