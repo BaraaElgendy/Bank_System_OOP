@@ -152,6 +152,7 @@
     <ClInclude Include="clsFindUser.h" />
     <ClInclude Include="clsListClients.h" />
     <ClInclude Include="clsListUsers.h" />
+    <ClInclude Include="clsLoginRegisterScreen.h" />
     <ClInclude Include="clsLoginScreen.h" />
     <ClInclude Include="clsMainMenuScreen.h" />
     <ClInclude Include="clsManageUsersMenu.h" />

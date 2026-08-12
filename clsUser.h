@@ -5,7 +5,6 @@
 #include<fstream>
 #include"clsPerson.h"
 #include"clsString.h"
-
 class clsUser : public clsPerson
 {
 
@@ -18,6 +17,7 @@ private:
     int _Permessions;
     bool _MarkForDelete = false;
 
+    struct stLoginRegisterRecord;
 
     static clsUser _ConvertLineToUserObject(string Line, string Seperator = "#//#") {
 
@@ -28,6 +28,24 @@ private:
         return clsUser(enMode::UpdateMode, vUserData[0], vUserData[1], vUserData[2], vUserData[3],
             vUserData[4], vUserData[5], stod(vUserData[6]));
     }
+
+    static stLoginRegisterRecord _ConvertLineToLoginStruct(string Line, string Seperator = "#//#") {
+
+        stLoginRegisterRecord Record;
+
+        vector<string> vUserData;
+
+        vUserData = clsString::Split(Line, Seperator);
+
+        Record.DateTime = vUserData[0];
+        Record.UserName = vUserData[1];
+        Record.Password = vUserData[2];
+        Record.Permessions = stoi(vUserData[3]);
+
+        return Record;
+    };
+
+
 
     static string _ConvertUserObjectToLine(clsUser User, string Seperator = "#//#") {
         string DataLine = "";
@@ -73,6 +91,7 @@ private:
 
         return vUsers;
     }
+
 
     static void _SaveUsersDataToFile(vector <clsUser> vUsers) {
 
@@ -146,8 +165,8 @@ private:
 
 
     string _PrepareLogDataLine(string Seperator = "#//#") {
-        string Line="";
-        Line += clsDate::GetSystemDateTime()+Seperator;
+        string Line = "";
+        Line += clsDate::GetSystemDateTime() + Seperator;
         Line += UserName() + Seperator;
         Line += Password() + Seperator;
         Line += to_string(Permessions());
@@ -157,8 +176,19 @@ private:
 
 public:
 
-    enum enPermessions { eAll = -1, pListClients = 1, pAddClient = 2, pDeleteClient = 4, pUpdateClient = 8, 
-        pFindClient = 16, pTransactionsMenu = 32, pManageUsers = 64 };
+
+    struct stLoginRegisterRecord {
+        string DateTime;
+        string UserName;
+        string Password;
+        int Permessions;
+
+    };
+
+    enum enPermessions {
+        eAll = -1, pListClients = 1, pAddClient = 2, pDeleteClient = 4, pUpdateClient = 8,
+        pFindClient = 16, pTransactionsMenu = 32, pManageUsers = 64
+    };
 
 
     clsUser(enMode Mode, string FirstName, string LastName,
@@ -347,7 +377,7 @@ public:
 
 
     void RegisterLogin() {
-        
+
         fstream MyFile;
 
         string DataLine = _PrepareLogDataLine();
@@ -365,8 +395,34 @@ public:
 
     }
 
-  
+    static vector<stLoginRegisterRecord> GetLoginRegisterLine() {
 
+        fstream MyFile;
+
+        vector<stLoginRegisterRecord> vLoginRegister;
+     
+        stLoginRegisterRecord LoginRegisterRecord;
+
+        MyFile.open("LoginRegister.txt", ios::in);//read Mode
+
+        if (MyFile.is_open())
+        {
+
+            string Line;
+
+            while (getline(MyFile, Line))
+            {
+                LoginRegisterRecord = _ConvertLineToLoginStruct(Line);
+                vLoginRegister.push_back(LoginRegisterRecord);
+
+            }
+
+            MyFile.close();
+
+        }
+
+        return vLoginRegister;
+    }
 
 };
 
