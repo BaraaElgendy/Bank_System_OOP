@@ -4,25 +4,36 @@
 #include "clsUser.h"
 #include"Global.h"
 #include"clsMainMenuScreen.h"
+
 using namespace std;
+
 class clsLoginScreen :protected clsScreen
 {
 
 private:
-	static void _Login() {
+	static bool _Login() {
 
 
 		bool LoginFailed = false;
+
+		short LoginCounter = 0;
 
 		string UserName, Password;
 
 		do {
 
 			if (LoginFailed) {
-				cout << "\nWrong Username/Password, Try Again\n\n";
+				LoginCounter++;
+				cout << "\nWrong Username/Password, Try Again\n";
+				cout << "You Have " << (3 - LoginCounter) << " Tries Left\n";
 			}
 
-			cout << "Enter Username: ";
+			if (LoginCounter == 3) {
+				cout << "\nYou Ared Locked Out Of The System After 3 Failed Tries\n";
+				return false;
+			}
+
+			cout << "\nEnter Username: ";
 			cin >> UserName;
 
 			cout << "Enter Password: ";
@@ -33,18 +44,21 @@ private:
 
 			LoginFailed = CurrentUser.IsEmpty();
 
+			
 
 		} while (LoginFailed);
 
-
-		clsMainMenuScreen::ShowMainMenu();
+		
+			clsMainMenuScreen::ShowMainMenu();
+			return true;
+		
 	}
 
 public:
 
-	static void ShowLoginScreen() {
+	static bool ShowLoginScreen() {
 		_DrawScreenHeader("\t  Login Screen");
-		_Login();
+		return _Login();
 	}
 
 };
