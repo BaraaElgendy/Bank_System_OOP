@@ -114,6 +114,14 @@ private:
 			Permessions += clsUser::enPermessions::pManageUsers;
 		}
 
+		cout << "\nLogin Register Menu? (Y/N) ";
+		cin >> Ans;
+
+		if (tolower(Ans) == 'y')
+		{
+			Permessions += clsUser::enPermessions::pLoginRegister;
+		}
+
 		return Permessions;
 
 	}

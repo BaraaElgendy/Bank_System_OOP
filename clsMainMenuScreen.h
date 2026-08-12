@@ -11,6 +11,7 @@
 #include"clsManageUsersMenu.h"
 #include"Global.h"
 #include"clsLoginRegisterScreen.h"
+#include"clsUser.h"
 using namespace std;
 
 class clsMainMenuScreen : protected clsScreen
@@ -18,6 +19,17 @@ class clsMainMenuScreen : protected clsScreen
 
 private:
 	enum enMainMenuOptions { eClientList = 1, eAddNew, eDelete, eUpdate, eFind, eTransactions, eManageUsers, eLoginRegister, eLogout };
+
+	static string _GetPermessionSymbol(clsUser::enPermessions Permession) {
+		if (CurrentUser.CheckPermessionAccess(Permession)) {
+			return "\033[32m[\xFB]\033[0m ";
+		}
+		else {
+			return "\033[31m[x]\033[0m ";
+		}
+
+
+	}
 
 	static short _ReadMainMenuOption() {
 		cout << setw(37) << left << "" << "Choose What You Want To Do [1 to 9] ";
@@ -69,16 +81,12 @@ private:
 		CurrentUser = clsUser::Find("", "");
 	}
 
-
-
 	static void _GoBackToMainMenuScreen()
 	{
 		cout << "\nPress Any Button To Go To Main Menu....";
 		system("pause>0");
 		ShowMainMenu();
 	};
-
-
 
 	static void _PerformMainMenuOption(enMainMenuOptions Option) {
 
@@ -137,22 +145,20 @@ public:
 		cout << setw(37) << left << "" << "===========================================\n";
 		cout << setw(37) << left << "" << "\t\t\tMain Menue\n";
 		cout << setw(37) << left << "" << "===========================================\n";
-		cout << setw(37) << left << "" << "\t[1] Show Client List\n";
-		cout << setw(37) << left << "" << "\t[2] Add New Client\n";
-		cout << setw(37) << left << "" << "\t[3] Delete Client\n";
-		cout << setw(37) << left << "" << "\t[4] Update Client Info\n";
-		cout << setw(37) << left << "" << "\t[5] Find Client\n";
-		cout << setw(37) << left << "" << "\t[6] Transactions\n";
-		cout << setw(37) << left << "" << "\t[7] Manage Users\n";
-		cout << setw(37) << left << "" << "\t[8] Login Register\n";
-		cout << setw(37) << left << "" << "\t[9] Logout\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pListClients) << "[1] Show Client List\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pAddClient) << "[2] Add New Client\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pDeleteClient) << "[3] Delete Client\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pUpdateClient) << "[4] Update Client Info\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pFindClient) << "[5] Find Client\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pTransactionsMenu) << "[6] Transactions\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pManageUsers) << "[7] Manage Users\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pLoginRegister) << "[8] Login Register\n";
+		cout << setw(37) << left << "" << "\t [9] Logout\n";
 		cout << setw(37) << left << "" << "===========================================\n";
 		_PerformMainMenuOption((enMainMenuOptions)_ReadMainMenuOption());
 
 
-	}
-
-
+	};
 
 };
 

@@ -27,9 +27,13 @@ public:
 
 	static void ShowLoginRegisterList() {
 
+
+		if (!CheckAccessRights(clsUser::enPermessions::pLoginRegister)) {
+			return;
+		}
+
 		vector<clsUser::stLoginRegisterRecord> vUsers = clsUser::GetLoginRegisterLine();
 
-		system("cls");
 
 		string Title = "\t Login Register Screen";
 		string SubTitle = "\t      (" + to_string(vUsers.size()) + ") Log(s)";
