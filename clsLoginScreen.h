@@ -23,13 +23,16 @@ private:
 		do {
 
 			if (LoginFailed) {
+
 				LoginCounter++;
-				cout << "\nWrong Username/Password, Try Again\n";
+
+				cout << "\nInvalid Username/Password!\n";
 				cout << "You Have " << (3 - LoginCounter) << " Tries Left\n";
-			}
+			
+}
 
 			if (LoginCounter == 3) {
-				cout << "\nYou Ared Locked Out Of The System After 3 Failed Tries\n";
+				cout << "\nYou Are Locked Out Of The System After 3 Failed Tries\n";
 				return false;
 			}
 
@@ -53,6 +56,7 @@ private:
 			return true;
 		
 	}
+	
 
 public:
 
