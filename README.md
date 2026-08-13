@@ -1,53 +1,91 @@
-[README.md.txt](https://github.com/user-attachments/files/30917060/README.md.txt)
-# 🏦 OOP Bank Management System (C++)
+# 🏦 Bank Management System — C++ OOP
 
-A comprehensive Console-Based Bank Management System built in **C++** using **Object-Oriented Programming (OOP)** principles. This project simulates real-world banking operations, including client management, transaction handling, user permissions, and data persistence via File I/O.
-
----
-
-## 🌟 Key Features
-
-*   **👤 Client Management:**
-    *   Show Client List
-    *   Add New Client
-    *   Delete Client
-    *   Update Client Info
-    *   Find Client
-*   **💳 Transactions Menu:**
-    *   Deposit Amount
-    *   Withdraw Amount
-    *   Total Balances List
-*   **🔐 User & Permission Management:**
-    *   Manage System Users
-    *   Custom User Access Permissions (Bitwise Flags)
-    *   Login / Logout System
-*   **📁 Data Persistence:**
-    *   Saves and loads all client & user data from `.txt` files.
+A console-based banking system built in **C++** using **Object-Oriented Programming** principles. Simulates core banking operations — client accounts, transactions, user permissions, and persistent data storage — through a clean, layered class architecture.
 
 ---
 
-## 🛠️ Software Architecture & OOP Concepts Applied
+## 📋 Overview
 
-This project was built focusing on writing clean, scalable, and modular code:
-
-*   **Encapsulation & Abstraction:** Hiding internal data structures and exposing clean interfaces via Public/Private class members.
-*   **Inheritance:** Used Base classes (e.g., `clsPerson`, `clsScreen`) to reduce code redundancy across UI screens and domain objects.
-*   **File I/O Stream Handling:** Custom file parsing and serialization/deserialization for saving objects.
-*   **Input Validation Utilities:** Robust validation classes (`clsInputValidate`) to handle user input gracefully without crashes.
-*   **Layered Architecture Separation:** Clear decoupling between UI Presentation screens and Data/Logic classes.
+This project models a real-world banking workflow end-to-end: employees log in with role-based permissions, manage client accounts, process deposits/withdrawals/transfers, and every action is persisted to disk. It was built as a deep dive into applying OOP principles to a multi-screen, multi-entity system rather than an isolated exercise.
 
 ---
 
-## 💻 Tech Stack & Tools
+## ✨ Features
 
-*   **Language:** C++
-*   **IDE:** Microsoft Visual Studio
-*   **Version Control:** Git & GitHub
+**Client Management**
+- Add, update, delete, and search client records
+- List all clients with real-time balance totals
+
+**Transactions**
+- Deposit and withdraw funds
+- Transfer between accounts with logged transfer history
+- Running balance calculations across all accounts
+
+**User & Access Control**
+- Login / logout system
+- Bitwise permission flags for granular access control per user
+- Account lockout after repeated failed login attempts
+- All login attempts recorded to a log file
+
+**Data Persistence**
+- Custom file-based storage (no external database) using serialized `.txt` records
+- Encrypted password storage
+- Full CRUD operations backed by file I/O
 
 ---
 
-## 🚀 How to Run the Project
+## 🏗️ Architecture & OOP Concepts
 
-1. **Clone the Repository:**
-   ```bash
-   git clone [https://github.com/BaraaElgendy/Bank-System-CPP.git](https://github.com/BaraaElgendy/Bank-System-CPP.git)
+| Concept | Application |
+|---|---|
+| **Encapsulation** | Private data members exposed only through controlled public interfaces |
+| **Inheritance** | Shared base classes (`clsPerson`, `clsScreen`) eliminate duplication across entities and UI screens |
+| **Abstraction** | Complex file I/O and validation logic hidden behind simple method calls |
+| **Static Members** | Utility and validation classes (`clsUtil`, `clsInputValidate`) operate without needing object instantiation |
+| **Layered Separation** | UI screens are fully decoupled from data/business logic classes |
+| **Serialization** | Custom object-to-line and line-to-object conversion for file-based persistence |
+
+---
+
+## 📁 Project Structure
+
+```
+├── clsPerson.h              # Base class for shared identity fields
+├── clsBankClient.h          # Client entity + banking operations
+├── clsUser.h                # System users + authentication
+├── clsEmployee.h            # Employee-specific logic
+├── clsDate.h                # Date handling utility
+├── clsUtil.h                # General-purpose static helpers
+├── clsInputValidate.h       # Input validation layer
+├── clsString.h               # String manipulation helpers
+├── clsScreen.h               # Base UI screen class
+├── cls*Screen.h              # Individual UI screens (Login, Deposit, Transfer, etc.)
+├── cls*Menu.h                 # Menu navigation classes
+├── Clients.txt / Users.txt   # Persisted data files
+├── TransferLog.txt           # Transaction audit log
+└── Bank_System_OOP.cpp       # Entry point
+```
+
+---
+
+## 🛠️ Tech Stack
+
+- **Language:** C++
+- **IDE:** Microsoft Visual Studio
+- **Version Control:** Git & GitHub
+
+---
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/BaraaElgendy/Bank_System_OOP.git
+```
+
+Open `Bank_System_OOP.slnx` in Visual Studio and build/run the solution.
+
+---
+
+## 📌 Status
+
+Actively developed as part of an ongoing OOP learning path — new modules and refinements are added as features are completed.
