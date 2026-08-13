@@ -5,6 +5,7 @@
 #include<fstream>
 #include"clsPerson.h"
 #include"clsString.h"
+#include"Global.h"
 
 using namespace std;
 
@@ -143,6 +144,37 @@ private:
     
         return clsBankClient(enMode::EmptyMode, " ", " ", " ", " ", " ", " ", 0);
     
+    }
+
+    string _PrepareTransferLogDataLine(double Amount, clsBankClient DestenationClient, string Seperator = "#//#") {
+
+        string DataLine = clsDate::GetSystemDateTime() + Seperator;
+        DataLine += _AccountNumber + Seperator;
+        DataLine += DestenationClient.AccountNumber() + Seperator;
+        DataLine += to_string(Amount) + Seperator;
+        DataLine += to_string(_AccountBalance) + Seperator;
+        DataLine += to_string(DestenationClient.AccountBalance()) + Seperator;
+        DataLine += CurrentUser.UserName();
+
+        return DataLine;
+    }
+
+    void _RegisterTransfer(double Amount, clsBankClient DestenationClient) {
+
+        fstream MyFile;
+
+        string DataLine = _PrepareTransferLogDataLine(Amount, DestenationClient);
+
+        MyFile.open("TransferLog.txt", ios::out | ios::app); //append Mode
+
+        if (MyFile.is_open()) {
+
+            MyFile << DataLine << endl;
+
+            MyFile.close();
+
+
+        }
     }
 
 public:
@@ -349,8 +381,11 @@ public:
      
         Withdraw(Amount);
         DestenationClient.Deposit(Amount);
+        _RegisterTransfer(Amount, DestenationClient);
         return true;
 
     }
+
+
 
 };

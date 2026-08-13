@@ -5,6 +5,7 @@
 #include<fstream>
 #include"clsPerson.h"
 #include"clsString.h"
+#include"clsDate.h"
 class clsUser : public clsPerson
 {
 
