@@ -1,7 +1,6 @@
 #pragma once
 #include<iomanip>
 #include"clsScreen.h"
-#include"clsLoginRegisterScreen.h"
 #include"clsUser.h"
 class clsLoginRegisterScreen: protected clsScreen
 {

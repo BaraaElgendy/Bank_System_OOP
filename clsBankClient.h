@@ -12,7 +12,7 @@ using namespace std;
 class clsBankClient : public clsPerson
 {
 private:
-    enum enMode { EmptyMode = 0, UpdateMode =2, AddNewMode =3};
+    enum enMode { EmptyMode = 0, UpdateMode = 2, AddNewMode = 3 };
     enMode _Mode;
 
     string _AccountNumber;
@@ -22,9 +22,9 @@ private:
 
 
     static clsBankClient _ConvertLineToClientObject(string Line, string Seperator = "#//#") {
-     
+
         vector<string> vClientData;
-        
+
         vClientData = clsString::Split(Line, Seperator);
 
         return clsBankClient(enMode::UpdateMode, vClientData[0], vClientData[1], vClientData[2], vClientData[3],
@@ -56,7 +56,7 @@ private:
 
         if (MyFile.is_open())
         {
-            
+
             string Line;
 
             while (getline(MyFile, Line))
@@ -77,21 +77,21 @@ private:
     }
 
     static void _SaveClientsDataToFile(vector <clsBankClient> vClients) {
-       
+
         fstream MyFile;
 
         string DataLine;
-        
+
         MyFile.open("Clients.txt", ios::out); //Write Mode
 
         if (MyFile.is_open()) {
-           
+
             for (clsBankClient C : vClients) {
 
-                if(C._MarkForDelete == false){
-                DataLine = _ConvertClientObjectToLine(C);
-               
-                MyFile << DataLine << endl;
+                if (C._MarkForDelete == false) {
+                    DataLine = _ConvertClientObjectToLine(C);
+
+                    MyFile << DataLine << endl;
                 }
             };
 
@@ -103,7 +103,7 @@ private:
     }
 
     static void _AddDataLineToFile(string DataLine) {
-   
+
         fstream MyFile;
 
         MyFile.open("Clients.txt", ios::out | ios::app); //append Mode
@@ -111,7 +111,7 @@ private:
         if (MyFile.is_open()) {
 
             MyFile << DataLine << endl;
-            
+
 
             MyFile.close();
         }
@@ -120,7 +120,7 @@ private:
     void _AddNew() {
 
         _AddDataLineToFile(_ConvertClientObjectToLine(*this));
-    
+
     }
 
     void _Update() {
@@ -141,9 +141,9 @@ private:
 
 
     static clsBankClient _GetEmptyClientObject() {
-    
+
         return clsBankClient(enMode::EmptyMode, " ", " ", " ", " ", " ", " ", 0);
-    
+
     }
 
     string _PrepareTransferLogDataLine(double Amount, clsBankClient DestenationClient, string Seperator = "#//#") {
@@ -177,6 +177,30 @@ private:
         }
     }
 
+    struct stTransferInfo;
+
+    static stTransferInfo _ConvertLineToTransferInfo(string Line, string Seperator = "#//#") {
+
+        vector<string> vClientData;
+
+        stTransferInfo Info;
+
+        vClientData = clsString::Split(Line, Seperator);
+
+        Info.DateTime = vClientData[0];
+        Info.SourceAccount = vClientData[1];
+        Info.DestenationAccount = vClientData[2];
+        Info.Amount = stod(vClientData[3]);
+        Info.SourceBalance = stod(vClientData[4]);
+        Info.DestenationBalance = stod(vClientData[5]);
+        Info.User = vClientData[6];
+
+        return Info;
+
+    }
+
+
+
 public:
 
     clsBankClient(enMode Mode, string FirstName, string LastName,
@@ -189,6 +213,10 @@ public:
         _Mode = Mode;
     }
 
+    struct stTransferInfo {
+        string DateTime, SourceAccount, DestenationAccount, User;
+        double Amount = 0, SourceBalance = 0, DestenationBalance = 0;
+    };
 
     bool IsEmpty() {
         return(enMode::EmptyMode == _Mode);
@@ -231,10 +259,10 @@ public:
             while (getline(MyFile, Line))
             {
                 clsBankClient Client = _ConvertLineToClientObject(Line);
-                if (Client.AccountNumber() == AccountNumber){
-                
-                 MyFile.close();
-                 return Client;
+                if (Client.AccountNumber() == AccountNumber) {
+
+                    MyFile.close();
+                    return Client;
                 }
             }
 
@@ -265,7 +293,7 @@ public:
                     MyFile.close();
                     return Client;
                 }
-            
+
             }
 
             MyFile.close();
@@ -274,8 +302,8 @@ public:
         return _GetEmptyClientObject();
     };
 
-    enum enSaveResults { svSaveFailedEmptyObject = 0, svSaveDone , svFailedClientExist };
- 
+    enum enSaveResults { svSaveFailedEmptyObject = 0, svSaveDone, svFailedClientExist };
+
     enSaveResults Save() {
 
         switch (_Mode) {
@@ -310,7 +338,7 @@ public:
         vector<clsBankClient> vClients = _LoadClientsDataFromFile();
 
         for (clsBankClient& C : vClients) {
-            if (C.AccountNumber() ==  _AccountNumber) {
+            if (C.AccountNumber() == _AccountNumber) {
 
                 C._MarkForDelete = true;
                 break;
@@ -319,25 +347,25 @@ public:
 
         }
 
-            _SaveClientsDataToFile(vClients);
-            *this = _GetEmptyClientObject();
-            return true;
+        _SaveClientsDataToFile(vClients);
+        *this = _GetEmptyClientObject();
+        return true;
     }
 
     static bool IsClientExist(string AccountNumber) {
 
- 
+
         return !Find(AccountNumber).IsEmpty();
-    
+
     }
 
     static clsBankClient GetAddNewClientObject(string AccountNumber) {
-      
+
         return clsBankClient(enMode::AddNewMode, " ", " ", " ", " ", AccountNumber, " ", 0);
-    
+
     }
 
-    
+
     static vector<clsBankClient> GetClientsList()
     {
         return _LoadClientsDataFromFile();
@@ -361,16 +389,16 @@ public:
     }
 
     bool Withdraw(double Amount) {
-     
+
         if (Amount > _AccountBalance) {
             return false;
         }
         else {
 
-        
-        _AccountBalance -= Amount;
-        Save();
-        
+
+            _AccountBalance -= Amount;
+            Save();
+
         }
     }
 
@@ -378,7 +406,7 @@ public:
         if (Amount > _AccountBalance) {
             return false;
         }
-     
+
         Withdraw(Amount);
         DestenationClient.Deposit(Amount);
         _RegisterTransfer(Amount, DestenationClient);
@@ -387,5 +415,33 @@ public:
     }
 
 
+    static vector<stTransferInfo> GetTransferLogInfo() {
 
+        fstream MyFile;
+
+        vector<stTransferInfo> TransferLogInfo;
+
+        stTransferInfo InfoStruct;
+
+        MyFile.open("TransferLog.txt", ios::in);//read Mode
+
+        if (MyFile.is_open())
+        {
+
+            string Line;
+            while (getline(MyFile, Line))
+            {
+
+                InfoStruct = _ConvertLineToTransferInfo(Line);
+                TransferLogInfo.push_back(InfoStruct);
+
+            }
+
+            MyFile.close();
+
+        }
+
+        return TransferLogInfo;
+
+    };
 };
