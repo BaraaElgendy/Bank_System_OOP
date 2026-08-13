@@ -329,6 +329,7 @@ public:
     }
 
     bool Withdraw(double Amount) {
+     
         if (Amount > _AccountBalance) {
             return false;
         }
@@ -341,5 +342,15 @@ public:
         }
     }
 
+    bool Transfer(double Amount, clsBankClient& DestenationClient) {
+        if (Amount > _AccountBalance) {
+            return false;
+        }
+     
+        Withdraw(Amount);
+        DestenationClient.Deposit(Amount);
+        return true;
+
+    }
 
 };
