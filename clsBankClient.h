@@ -6,6 +6,7 @@
 #include"clsPerson.h"
 #include"clsString.h"
 #include"Global.h"
+#include"clsUtil.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ private:
         vClientData = clsString::Split(Line, Seperator);
 
         return clsBankClient(enMode::UpdateMode, vClientData[0], vClientData[1], vClientData[2], vClientData[3],
-            vClientData[4], vClientData[5], stod(vClientData[6]));
+            vClientData[4],clsUtil::DecryptText( vClientData[5],4), stod(vClientData[6]));
     }
 
     static string _ConvertClientObjectToLine(clsBankClient Client, string Seperator = "#//#") {
@@ -38,7 +39,7 @@ private:
         DataLine += Client.Email() + Seperator;
         DataLine += Client.Phone() + Seperator;
         DataLine += Client.AccountNumber() + Seperator;
-        DataLine += Client.PinCode() + Seperator;
+        DataLine += clsUtil::EncryptText(Client.PinCode(), 4) + Seperator;
         DataLine += to_string(Client.AccountBalance());
 
 
@@ -444,4 +445,5 @@ public:
         return TransferLogInfo;
 
     };
+
 };

@@ -6,6 +6,7 @@
 #include"clsPerson.h"
 #include"clsString.h"
 #include"clsDate.h"
+#include"clsUtil.h"
 class clsUser : public clsPerson
 {
 
@@ -27,7 +28,7 @@ private:
         vUserData = clsString::Split(Line, Seperator);
 
         return clsUser(enMode::UpdateMode, vUserData[0], vUserData[1], vUserData[2], vUserData[3],
-            vUserData[4], vUserData[5], stod(vUserData[6]));
+            vUserData[4], clsUtil::DecryptText(vUserData[5], 4), stod(vUserData[6]));
     }
 
     static stLoginRegisterRecord _ConvertLineToLoginStruct(string Line, string Seperator = "#//#") {
@@ -40,7 +41,7 @@ private:
 
         Record.DateTime = vUserData[0];
         Record.UserName = vUserData[1];
-        Record.Password = vUserData[2];
+        Record.Password = clsUtil::DecryptText(vUserData[2], 4);
         Record.Permessions = stoi(vUserData[3]);
 
         return Record;
@@ -55,7 +56,7 @@ private:
         DataLine += User.Email() + Seperator;
         DataLine += User.Phone() + Seperator;
         DataLine += User.UserName() + Seperator;
-        DataLine += User.Password() + Seperator;
+        DataLine += clsUtil::EncryptText(User.Password(), 4) + Seperator;
         DataLine += to_string(User.Permessions());
 
 
@@ -169,7 +170,7 @@ private:
         string Line = "";
         Line += clsDate::GetSystemDateTime() + Seperator;
         Line += UserName() + Seperator;
-        Line += Password() + Seperator;
+        Line += clsUtil::EncryptText(Password(), 4) + Seperator;
         Line += to_string(Permessions());
         return Line;
 
