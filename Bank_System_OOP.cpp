@@ -1,4 +1,6 @@
 #include"clsLoginScreen.h"
+#include"clsCurruncyMainScreen.h"
+#include"clsListCurrencies.h"
 using namespace std;
 
 int main() {

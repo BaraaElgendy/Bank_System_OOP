@@ -145,6 +145,7 @@
     <ClInclude Include="clsAddNewClientScreen.h" />
     <ClInclude Include="clsAddNewUser.h" />
     <ClInclude Include="clsBankClient.h" />
+    <ClInclude Include="clsCurruncyMainScreen.h" />
     <ClInclude Include="clsDeleteClient.h" />
     <ClInclude Include="clsDeleteUser.h" />
     <ClInclude Include="clsDepositScreen.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="clsFindUser.h" />
     <ClInclude Include="clsInterfaceCommunication.h" />
     <ClInclude Include="clsListClients.h" />
+    <ClInclude Include="clsListCurrencies.h" />
     <ClInclude Include="clsListUsers.h" />
     <ClInclude Include="clsLoginRegisterScreen.h" />
     <ClInclude Include="clsLoginScreen.h" />

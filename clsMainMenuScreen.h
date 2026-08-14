@@ -12,13 +12,14 @@
 #include"Global.h"
 #include"clsLoginRegisterScreen.h"
 #include"clsUser.h"
+#include"clsCurruncyMainScreen.h"
 using namespace std;
 
 class clsMainMenuScreen : protected clsScreen
 {
 
 private:
-	enum enMainMenuOptions { eClientList = 1, eAddNew, eDelete, eUpdate, eFind, eTransactions, eManageUsers, eLoginRegister, eLogout };
+	enum enMainMenuOptions { eClientList = 1, eAddNew, eDelete, eUpdate, eFind, eTransactions, eManageUsers, eLoginRegister, eCurrencyExchange,eLogout };
 
 	static string _GetPermessionSymbol(clsUser::enPermessions Permession) {
 		if (CurrentUser.CheckPermessionAccess(Permession)) {
@@ -32,8 +33,8 @@ private:
 	}
 
 	static short _ReadMainMenuOption() {
-		cout << setw(37) << left << "" << "Choose What You Want To Do [1 to 9] ";
-		short Choice = clsInputValidate::ReadShortNumberBetween(1, 9, "Enter Number From 1 to 9: ");
+		cout << setw(37) << left << "" << "Choose What You Want To Do [1 to 10] ";
+		short Choice = clsInputValidate::ReadShortNumberBetween(1, 10, "Enter Number From 1 to 10: ");
 		return Choice;
 	}
 
@@ -75,6 +76,10 @@ private:
 
 	static void _ShowLoginRegisterScreen() {
 		clsLoginRegisterScreen::ShowLoginRegisterList();
+	}
+
+	static void _ShowCurrencyExchangeScreen(){
+		clsCurruncyMainScreen::ShowCurrencyMenu();
 	}
 
 	static void _Logout() {
@@ -123,6 +128,10 @@ private:
 			_ShowLoginRegisterScreen();
 			break;
 
+		case eCurrencyExchange:
+			_ShowCurrencyExchangeScreen();
+			break;
+
 		case eLogout:
 			_Logout();
 			break;
@@ -153,7 +162,8 @@ public:
 		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pTransactionsMenu) << "[6] Transactions\n";
 		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pManageUsers) << "[7] Manage Users\n";
 		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pLoginRegister) << "[8] Login Register\n";
-		cout << setw(37) << left << "" << "\t [9] Logout\n";
+		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pCurrencyExchange) << "[9] Currency Exchange\n";
+		cout << setw(37) << left << "" << "\t [10] Logout\n";
 		cout << setw(37) << left << "" << "===========================================\n";
 		_PerformMainMenuOption((enMainMenuOptions)_ReadMainMenuOption());
 

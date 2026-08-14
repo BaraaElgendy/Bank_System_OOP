@@ -189,7 +189,7 @@ public:
 
     enum enPermessions {
         eAll = -1, pListClients = 1, pAddClient = 2, pDeleteClient = 4, pUpdateClient = 8,
-        pFindClient = 16, pTransactionsMenu = 32, pManageUsers = 64, pLoginRegister = 128
+        pFindClient = 16, pTransactionsMenu = 32, pManageUsers = 64, pLoginRegister = 128 , pCurrencyExchange=256
     };
 
 
