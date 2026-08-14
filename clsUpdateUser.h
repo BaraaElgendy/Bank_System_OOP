@@ -122,6 +122,14 @@ private:
 			Permessions += clsUser::enPermessions::pLoginRegister;
 		}
 
+		cout << "\nCurrency Exchange Menu? (Y/N) ";
+		cin >> Ans;
+
+		if (tolower(Ans) == 'y')
+		{
+			Permessions += clsUser::enPermessions::pCurrencyExchange;
+		}
+
 		return Permessions;
 
 	}

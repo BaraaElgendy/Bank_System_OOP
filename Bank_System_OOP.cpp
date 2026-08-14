@@ -1,4 +1,5 @@
 #include"clsLoginScreen.h"
+#include"clsUpdateCurrencyRate.h"
 using namespace std;
 
 int main() {
@@ -13,4 +14,6 @@ int main() {
 
 	}
 
+
+	
 }
