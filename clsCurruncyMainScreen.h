@@ -4,6 +4,7 @@
 #include"clsScreen.h"
 #include"clsInputValidate.h"
 #include"clsListCurrencies.h"
+#include"clsFindCurrency.h"
 class clsCurruncyMainScreen : protected clsScreen
 {
 
@@ -19,7 +20,10 @@ class clsCurruncyMainScreen : protected clsScreen
 		clsListCurrencies::ShowCurrenciesList();
 	}
 
-	static void _ShowFindCurrencyScreen() {}
+	static void _ShowFindCurrencyScreen() {
+		clsFindCurrency::ShowFindCurrencyScreen();
+	
+	}
 
 	static void _ShowUpdateRateScreen() {}
 
