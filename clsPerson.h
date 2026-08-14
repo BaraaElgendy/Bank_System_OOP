@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
+#include"clsInterfaceCommunication.h"
 using namespace std;
 
-class clsPerson
+class clsPerson : public clsInterfaceCommunication
 {
 
 private:
@@ -80,7 +81,7 @@ public:
     }
 
     
-    void SendEmail(string Subject, string Body)
+    void  SendEmail(string Subject, string Body)
     {
 
         cout << "\nThe following message sent successfully to email: " << _Email;
@@ -89,10 +90,15 @@ public:
 
     }
 
-    void SendSMS(string TextMessage)
+    void SendSMS(string Subject, string Body)
     {
-        cout << "\nThe following SMS sent successfully to phone: " << _Phone;
-        cout << "\n" << TextMessage << endl;
+        cout << "\nThe following message sent successfully to Number: " << _Phone;
+        cout << "\nSubject: " << Subject;
+        cout << "\nBody: " << Body << endl;
+    }
+
+    void SendFax(string Subject, string Body) {
+        
     }
 
 

@@ -1,5 +1,4 @@
 #include"clsLoginScreen.h"
-#include"clsUtil.h"
 using namespace std;
 
 int main() {
@@ -14,5 +13,4 @@ int main() {
 
 	}
 
-	//cout<<clsUtil::EncryptText("1234", 4);
 }

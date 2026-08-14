@@ -150,12 +150,14 @@
     <ClInclude Include="clsDepositScreen.h" />
     <ClInclude Include="clsFindClientScreen.h" />
     <ClInclude Include="clsFindUser.h" />
+    <ClInclude Include="clsInterfaceCommunication.h" />
     <ClInclude Include="clsListClients.h" />
     <ClInclude Include="clsListUsers.h" />
     <ClInclude Include="clsLoginRegisterScreen.h" />
     <ClInclude Include="clsLoginScreen.h" />
     <ClInclude Include="clsMainMenuScreen.h" />
     <ClInclude Include="clsManageUsersMenu.h" />
+    <ClInclude Include="clsPerson.h" />
     <ClInclude Include="clsScreen.h" />
     <ClInclude Include="clsShowBalances.h" />
     <ClInclude Include="clsTransactionsMenu.h" />

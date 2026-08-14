@@ -143,7 +143,7 @@ public:
 		system("cls");
 		clsScreen::_DrawScreenHeader("\t      Main Menu");
 		cout << setw(37) << left << "" << "===========================================\n";
-		cout << setw(37) << left << "" << "\t\t\tMain Menue\n";
+		cout << setw(37) << left << "" << "\t\t       Main Menu\n";
 		cout << setw(37) << left << "" << "===========================================\n";
 		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pListClients) << "[1] Show Client List\n";
 		cout << setw(37) << left << "" << _GetPermessionSymbol(clsUser::enPermessions::pAddClient) << "[2] Add New Client\n";
