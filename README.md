@@ -8,9 +8,13 @@ A console-based banking system built in **C++** using **Object-Oriented Programm
 
 This project models a real-world banking workflow end-to-end: employees log in with role-based permissions, manage client accounts, process deposits/withdrawals/transfers, and every action is persisted to disk. It was built as a deep dive into applying OOP principles to a multi-screen, multi-entity system rather than an isolated exercise.
 
+The system is organized into two major modules built on a shared architecture — demonstrating how a well-designed OOP foundation (base screen classes, shared persistence logic, reusable validation) lets new functionality be added without rebuilding the system from scratch.
+
 ---
 
 ## ✨ Features
+
+### 🏦 Module 1 — Bank System
 
 **Client Management**
 - Add, update, delete, and search client records
@@ -29,8 +33,15 @@ This project models a real-world banking workflow end-to-end: employees log in w
 
 **Data Persistence**
 - Custom file-based storage (no external database) using serialized `.txt` records
-- Encrypted password storage
+- **Encrypted password storage**
 - Full CRUD operations backed by file I/O
+
+### 💱 Module 2 — Currency Exchange
+
+- Add, update, find, and list supported currencies
+- Live exchange rate updates
+- Built-in currency calculator screen
+- Reuses the same screen architecture, file persistence layer, and validation logic as the Bank module
 
 ---
 
@@ -58,8 +69,9 @@ This project models a real-world banking workflow end-to-end: employees log in w
 ├── clsUtil.h                # General-purpose static helpers
 ├── clsInputValidate.h       # Input validation layer
 ├── clsString.h               # String manipulation helpers
+├── clsCurrency.h              # Currency entity + exchange logic
 ├── clsScreen.h               # Base UI screen class
-├── cls*Screen.h              # Individual UI screens (Login, Deposit, Transfer, etc.)
+├── cls*Screen.h              # Individual UI screens (Login, Deposit, Transfer, Currency, etc.)
 ├── cls*Menu.h                 # Menu navigation classes
 ├── Clients.txt / Users.txt   # Persisted data files
 ├── TransferLog.txt           # Transaction audit log
