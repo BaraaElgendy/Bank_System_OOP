@@ -23,7 +23,7 @@ private:
 		cout << "____________________________\n";
 		float rate;
 		cout << "\nEnter New Rate: ";
-		rate = clsInputValidate::ReadFloatNumber();
+		rate = clsInputValidate::ReadNumber<float>();
 
 		Currency.UpdateRate(rate);
 

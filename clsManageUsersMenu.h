@@ -17,7 +17,7 @@ private:
 
 	static short _ReadManageUsersMenuOption() {
 		cout << setw(37) << left << "" << "Choose What You Want To Do [1 to 6] ";
-		short Choice = clsInputValidate::ReadShortNumberBetween(1, 6, "Enter Number From 1 to 6: ");
+		short Choice = clsInputValidate::ReadNumberBetween(1, 6, "Enter Number From 1 to 6: ");
 		return Choice;
 	}
 

@@ -22,7 +22,7 @@ private:
 	static short _GetFindChoice() {
 		short Choice;
 		cout << "Find By [1] Code or [2] Country? ";
-		Choice = clsInputValidate::ReadShortNumberBetween(1, 2, "Choose 1 or 2");
+		Choice = clsInputValidate::ReadNumberBetween(1, 2, "Choose 1 or 2");
 		return Choice;
 	}
 

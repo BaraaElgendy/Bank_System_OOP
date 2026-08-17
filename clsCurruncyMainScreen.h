@@ -14,7 +14,7 @@ class clsCurruncyMainScreen : protected clsScreen
 
 	static short _ReadManageCurrencyMenuOption() {
 		cout << setw(37) << left << "" << "Choose What You Want To Do [1 to 5] ";
-		short Choice = clsInputValidate::ReadShortNumberBetween(1, 5, "Enter Number From 1 to 5: ");
+		short Choice = clsInputValidate::ReadNumberBetween(1, 5, "Enter Number From 1 to 5: ");
 		return Choice;
 	}
 

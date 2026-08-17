@@ -28,7 +28,7 @@ private:
 		Client.setPinCode(clsInputValidate::ReadString());
 
 		cout << "\nEnter Balance: ";
-		Client.setAccountBalance(clsInputValidate::ReadDblNumber());
+		Client.setAccountBalance(clsInputValidate::ReadNumber<double>());
 
 	};
 

@@ -38,7 +38,7 @@ private:
 	static float _GetAmount() {
 		float Amount;
 		cout << "\nEnter The Amount To Exchange: ";
-		Amount = clsInputValidate::ReadFloatNumber();
+		Amount = clsInputValidate::ReadNumber<float>();
 		return Amount;
 	}
 

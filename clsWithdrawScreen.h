@@ -49,11 +49,11 @@ public:
 
 		double Amount = 0;
 		cout << "\nEnter Withdraw Amount: ";
-		Amount = clsInputValidate::ReadDblNumber();
+		Amount = clsInputValidate::ReadNumber<double>();
 
 		while (Amount < 0) {
 			cout << "\nEnter Positive Amount: ";
-			Amount = clsInputValidate::ReadDblNumber();
+			Amount = clsInputValidate::ReadNumber<double>();
 		}
 
 		if (Client.Withdraw(Amount) == false) {
