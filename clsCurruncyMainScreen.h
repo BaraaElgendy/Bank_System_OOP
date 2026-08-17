@@ -6,7 +6,7 @@
 #include"clsListCurrencies.h"
 #include"clsFindCurrency.h"
 #include"clsUpdateCurrencyRate.h"
-
+#include"clsCurrencyCalcScreen.h"
 class clsCurruncyMainScreen : protected clsScreen
 {
 
@@ -32,7 +32,9 @@ class clsCurruncyMainScreen : protected clsScreen
 		clsUpdateCurrencyRate::ShowUpdateRateScreen();
 	}
 
-	static void _ShowCurrencyCalcScreen() {}
+	static void _ShowCurrencyCalcScreen() {
+		clsCurrencyCalcScreen::ShowCurrencyCalacScreen();
+	}
 
 	static void _GoBackToCurrencyScreen()
 	{

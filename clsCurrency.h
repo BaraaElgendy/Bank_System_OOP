@@ -147,7 +147,7 @@ public:
 		_Update();
 	}
 
-	static   clsCurrency FindByCode(string CurrencyCode)
+	static clsCurrency FindByCode(string CurrencyCode)
 	{
 
 		CurrencyCode = clsString::UpperAllString(CurrencyCode);
@@ -217,6 +217,27 @@ public:
 
 	static vector<clsCurrency> GetCurrenciesList() {
 		return _LoadCurrencyDataFromFile();
+	}
+
+
+	float ConvertToUSD(float Amount) {
+
+		return (Amount / Rate());
+
+	}
+
+	float ConvertToOtherCurrency(float Amount,clsCurrency Currency2) {
+		
+		float AmountInUsd = ConvertToUSD(Amount);
+
+		if (Currency2.CurrencyCode() == "USD") {
+
+			return AmountInUsd;
+	
+		}
+
+		return (AmountInUsd * Currency2.Rate());
+
 	}
 
 };

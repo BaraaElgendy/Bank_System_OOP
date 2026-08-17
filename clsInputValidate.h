@@ -108,6 +108,36 @@ public:
 
 	}
 
+
+	static float ReadFloatNumber(string Message = "Invalid Input, Try Again") {
+		float Number;
+		cin >> Number;
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			cout << Message << endl;
+			cin >> Number;
+		}
+		return Number;
+	}
+
+	static float ReadFloatNumberBetween(float From, float To, string Message = "Number Not In Range, Try Again") {
+
+		float num = ReadDblNumber();
+
+
+		while (!IsNumberBetween(num, From, To)) {
+			cout << Message << endl;
+			num = ReadDblNumber();
+		}
+		return num;
+
+
+	}
+
+
+
 	static bool IsValidDate(clsDate Date) {
 		return clsDate::IsValidDate(Date);
 	}
