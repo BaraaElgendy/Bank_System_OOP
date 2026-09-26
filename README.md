@@ -56,6 +56,12 @@ The system is organized into two major modules built on a shared architecture �
 | **Layered Separation** | UI screens are fully decoupled from data/business logic classes |
 | **Serialization** | Custom object-to-line and line-to-object conversion for file-based persistence |
 
+
+## 🏛️ System Architecture Diagram
+
+![System Architecture](Diagram/Bank Diagram.png)
+
+
 ---
 
 ## 📁 Project Structure
