@@ -8,19 +8,12 @@ private:
 
 	static void _PrintLoginRegisterRecordLine(clsUser::stLoginRegisterRecord User) {
 
-
-
 		cout << setw(8) << left << "" << "| " << setw(30) << left << User.DateTime;
 		cout << "| " << setw(20) << left << User.UserName;
 		cout << "| " << setw(20) << left << User.Password;
 		cout << "| " << setw(12) << left << User.Permessions << endl;
 
-
 	};
-
-	
-
-
 
 public:
 
@@ -68,8 +61,6 @@ public:
 
 
 	}
-
-
 
 };
 
