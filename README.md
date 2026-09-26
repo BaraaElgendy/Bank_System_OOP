@@ -59,7 +59,7 @@ The system is organized into two major modules built on a shared architecture �
 
 ## 🏛️ System Architecture Diagram
 
-![System Architecture](Diagram/Bank Diagram.png)
+![System Architecture Diagram](Diagram/Bank Diagram.png)
 
 
 ---
