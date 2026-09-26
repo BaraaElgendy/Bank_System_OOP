@@ -59,7 +59,9 @@ The system is organized into two major modules built on a shared architecture �
 
 ## 🏛️ System Architecture Diagram
 
-![System Architecture Diagram](Diagram/Bank Diagram.png)
+Click the diagram to explore the interactive class hierarchy and system design:
+
+[![System Architecture Diagram](Diagram/Bank_Diagram.png)](https://gitdiagram.com/BaraaElgendy/Bank_System_OOP)
 
 
 ---
